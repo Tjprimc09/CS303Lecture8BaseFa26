@@ -7,6 +7,7 @@ public interface MyList<E> extends java.util.Collection<E> {
     //Abstract Method: Create a new larger array, double the current size + 1   
     public void add(int index, E e);
 
+
     //Abstract Method: Clear the list
     public void clear();
 

@@ -303,8 +303,17 @@ public class MyLinkedList<E> implements MyList<E> {
   //POST:checks data elements if found, returns true
   //     else returns false
   public boolean contains(Object e) {
-    System.out.println("You must add the logic for method: contains");
-    return false;
+   // System.out.println("You must add the logic for method: contains");
+   // return false;
+   Node<E> temp = head;
+   
+   while (temp != null){
+    if (temp.element.equals(e)){
+      return true;
+    }
+    temp = temp.next;
+   }
+   return false;
   }
 
   @Override 
@@ -313,8 +322,16 @@ public class MyLinkedList<E> implements MyList<E> {
   //POST:verify the index & return null if invalid
   //     return the element 
   public E get(int index) {
-    System.out.println("You must add the logic for method: get");
-    return null;
+   // System.out.println("You must add the logic for method: get");
+   // return null;
+    if (index < 0 || index >= size()){
+      return null;
+    }
+    Node <E> temp = head;
+    for (int i = 0; i < index; i++){
+      temp = temp.next;
+    }
+    return temp.element;
   }
 
   @Override 
@@ -323,7 +340,17 @@ public class MyLinkedList<E> implements MyList<E> {
   //POST:returns the index if found or -1 if not 
 
   public int indexOf(Object e) {
-    System.out.println("You must add the logic for method: indexOf");
+    //System.out.println("You must add the logic for method: indexOf");
+    //return -1;
+    if (!contains(e)){
+    return -1;
+    }
+    Node<E> temp = head;
+    for (int i = 0; temp.next != null; i++){
+      if (temp.element.equals(e))
+        return i;
+      temp = temp.next;
+    }
     return -1;
   }
 
@@ -367,11 +394,21 @@ public class MyLinkedList<E> implements MyList<E> {
   //     saves old value at the index
   //     sets index value to new element  
   //     returns element
-
   public E set(int index, E e) {
-    System.out.println("You must add the logic for method: set");
-    return null;
+    if (index < 0 || index >= size()) {// verifying index bounds
+      throw new IndexOutOfBoundsException("Index out of bounds");
+    }
+
+    Node<E> temp = head;
+    for (int i = 0; i < index; i++) {// walk temp to the node at index
+      temp = temp.next;
+    }
+
+    E oldElement = temp.element; // save the existing element to return
+    temp.element = e; // update the node's element to the new value
+    return oldElement; // return the replaced element
   }
+
   
 
   @Override 
